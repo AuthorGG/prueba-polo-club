@@ -9,7 +9,7 @@ export const useProductStore = defineStore("products", {
   actions: {
     async load() {
       this.loading = true;
-      this.eror = null;
+      this.error = null;
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         if (!res.ok) {
