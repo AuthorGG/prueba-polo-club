@@ -12,10 +12,10 @@ onMounted(() => {
 
 <template>
   <section>
-    <p :v-if="loading">Cargando Productos</p>
-    <p :v-else-if="error">Error al cargar productos</p>
-    <ul :v-else>
-      <li :v-for="p in store.products" :key="p.id">
+    <p v-if="loading">Cargando Productos</p>
+    <p v-else-if="error">Error al cargar productos</p>
+    <ul v-else>
+      <li v-for="p in store.products" :key="p.id">
         {{ p.title }} - {{ p.price }}€
       </li>
     </ul>
