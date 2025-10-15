@@ -7,7 +7,7 @@ defineProps({
 <template>
   <article>
     <img :src="product.image" :alt="product.title" loading="lazy" />
-    <h1>{{ product.title }}</h1>
+    <h2>{{ product.title }}</h2>
     <p>{{ product.price }}</p>
     <button>add to cart</button>
   </article>

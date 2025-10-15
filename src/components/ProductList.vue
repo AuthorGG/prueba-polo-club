@@ -2,9 +2,14 @@
 import { onMounted } from "vue";
 import ProductCard from "./ProductCard.vue";
 import { useProductStore } from "../stores/products";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const store = useProductStore();
-
+const modules = [Navigation, Pagination];
 onMounted(() => {
   store.load();
 });
@@ -14,11 +19,27 @@ onMounted(() => {
   <section>
     <p v-if="loading">Cargando Productos</p>
     <p v-else-if="error">Error al cargar productos</p>
-    <ul v-else>
-      <li v-for="p in store.products" :key="p.id">
+    <Swiper
+      v-else
+      class="product-swiper"
+      :modules="modules"
+      :space-between="20"
+      :navigation="true"
+      :pagination="{ clickable: true }"
+      :breakpoints="{
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }"
+    >
+      <SwiperSlide v-for="p in store.products" :key="p.id">
         <ProductCard :product="p" />
-      </li>
-    </ul>
+      </SwiperSlide>
+    </Swiper>
   </section>
 </template>
-<style scoped></style>
+<style scoped>
+.product-swiper {
+  padding: 0.5rem 0 2rem;
+}
+</style>
