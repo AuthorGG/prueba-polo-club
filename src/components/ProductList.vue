@@ -17,13 +17,13 @@ onMounted(() => {
 
 <template>
   <section>
-    <p v-if="loading">Cargando Productos</p>
-    <p v-else-if="error">Error al cargar productos</p>
+    <p v-if="store.loading">Cargando Productos</p>
+    <p v-else-if="store.error">Error al cargar productos</p>
     <Swiper
       v-else
       class="product-swiper"
       :modules="modules"
-      :space-between="20"
+      :space-between="0.7"
       :navigation="true"
       :pagination="{ clickable: true }"
       :breakpoints="{
@@ -40,6 +40,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .product-swiper {
-  padding: 0.5rem 0 2rem;
+  padding: 0.5rem 0 1rem;
+  padding-bottom: 4rem;
 }
 </style>
