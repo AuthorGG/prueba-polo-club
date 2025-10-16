@@ -30,23 +30,18 @@ defineProps({
   --card-h: 420px;
 }
 
-.pcard {
-  width: var(--card-w);
-  height: var(--card-h);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border: 1px solid #e6e6e6;
-  border-radius: 14px;
-  padding: 16px;
-  background: #fff;
-  box-sizing: border-box;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+.card {
+  background: rgba(58, 21, 3, 0.596);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.2s ease;
 }
 
-.pcard:hover {
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+.card:hover {
+  transform: scale(1.02);
 }
 
 .thumb {
@@ -93,8 +88,9 @@ defineProps({
 }
 
 .price-now {
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: #1a73e8;
+  font-weight: bold;
 }
 
 .actions {

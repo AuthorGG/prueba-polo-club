@@ -1,17 +1,26 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { ref } from "vue";
 import { useCartStore } from "../stores/cart";
 
 const cart = useCartStore();
+const menuOpen = ref(false);
 </script>
 
 <template>
   <header>
     <nav class="navbar">
-      <ul class="nav-left">
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/collection">Collection</RouterLink></li>
-      </ul>
+      <div
+        class="hamgurger-wrapper"
+        @mouseenter="menuOpen = true"
+        @mouseleave="menuOpen = false"
+      >
+        <div class="hamgurger">☰</div>
+        <ul v-show="menuOpen" class="dropdown">
+          <li><RouterLink to="/">Home</RouterLink></li>
+          <li><RouterLink to="/collection">Collection</RouterLink></li>
+        </ul>
+      </div>
 
       <ul class="nav-right">
         <li>
@@ -37,8 +46,64 @@ const cart = useCartStore();
   align-items: center;
   padding: 1rem;
 }
+.hamburger-wrapper {
+  position: relative;
+}
 
-.nav-left,
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown {
+  position: absolute;
+  top: 70%;
+  left: 0.8;
+  background-color: #2a2f38;
+  border-radius: 8px;
+  list-style: none;
+  padding: 2rem 2rem;
+  margin: 0;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.2s ease;
+}
+
+.dropdown li {
+  padding: 0.4rem 0;
+}
+
+.dropdown a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  display: block;
+}
+
+.dropdown a:hover {
+  color: #ffd369;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .nav-right {
   display: flex;
   gap: 1.5rem;

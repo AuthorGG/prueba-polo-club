@@ -28,6 +28,9 @@ const cart = useCartStore();
     </ul>
 
     <footer v-if="cart.items.length > 0" class="cart-footer">
+      <p class="total-items">
+        Total de productos: <strong>{{ cart.totalItems }}</strong>
+      </p>
       <p class="subtotal">
         Subtotal:
         <strong
@@ -67,6 +70,12 @@ const cart = useCartStore();
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid #eee;
+}
+
+.total-items {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #444;
 }
 
 .item-img {
