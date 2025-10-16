@@ -23,13 +23,15 @@ onMounted(() => {
       v-else
       class="product-swiper"
       :modules="modules"
-      :space-between="0.7"
+      :space-between="16"
       :navigation="true"
       :pagination="{ clickable: true }"
+      :loop="false"
       :breakpoints="{
         0: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
+        1280: { slidesPerView: 4 },
       }"
     >
       <SwiperSlide v-for="p in store.products" :key="p.id">
@@ -39,8 +41,34 @@ onMounted(() => {
   </section>
 </template>
 <style scoped>
-.product-swiper {
+/* .product-swiper {
   padding: 0.5rem 0 1rem;
   padding-bottom: 4rem;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  padding: 1rem;
+} */
+
+.collection {
+  padding: 0 8px;
+}
+
+/* reserva espacio para la paginación y la separa de las cards */
+.product-swiper {
+  padding-bottom: 36px;
+}
+:deep(.swiper-pagination) {
+  bottom: 0 !important;
+}
+
+/* centra cada tarjeta dentro del slide (todas igual de anchas) */
+.slide-center {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 </style>
