@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed, ref } from "vue";
 import ProductCard from "../components/ProductCard.vue";
 import { useProductStore } from "../stores/products";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -7,16 +7,29 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import SearchBar from "../components/SearchBar.vue";
 
 const store = useProductStore();
 const modules = [Navigation, Pagination];
+
+const searchTerm = ref("");
 onMounted(() => {
   store.load();
+});
+const filteredProducts = computed(() => {
+  if (!searchTerm.value.trim()) {
+    return store.products;
+  }
+  return store.products.filter((p) =>
+    p.title.toLowerCase().includes(searchTerm.value.toLowerCase())
+  );
 });
 </script>
 
 <template>
   <section>
+    <h1>Collection</h1>
+    <SearchBar v-model="searchTerm" />
     <p v-if="store.loading">Cargando Productos</p>
     <p v-else-if="store.error">Error al cargar productos</p>
     <Swiper
@@ -34,30 +47,17 @@ onMounted(() => {
         1280: { slidesPerView: 4 },
       }"
     >
-      <SwiperSlide v-for="p in store.products" :key="p.id">
+      <SwiperSlide v-for="p in filteredProducts" :key="p.id">
         <ProductCard :product="p" />
       </SwiperSlide>
     </Swiper>
   </section>
 </template>
 <style scoped>
-/* .product-swiper {
-  padding: 0.5rem 0 1rem;
-  padding-bottom: 4rem;
-}
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  justify-items: center;
-  padding: 1rem;
-} */
-
 .collection {
   padding: 0 8px;
 }
 
-/* reserva espacio para la paginación y la separa de las cards */
 .product-swiper {
   padding-bottom: 36px;
 }
@@ -65,7 +65,6 @@ onMounted(() => {
   bottom: 0 !important;
 }
 
-/* centra cada tarjeta dentro del slide (todas igual de anchas) */
 .slide-center {
   display: flex;
   justify-content: center;

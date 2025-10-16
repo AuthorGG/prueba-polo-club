@@ -15,11 +15,11 @@ defineProps({
     <h2 class="title">{{ product.title }}</h2>
 
     <div class="prices">
-      <p class="product-now">{{ product.price }}</p>
+      <p class="product-now">{{ product.price }} €</p>
     </div>
 
     <div class="actions">
-      <button @click="cart.addToCart(product)" class="btn">add to cart</button>
+      <button @click="cart.addToCart(product)" class="btn">Add to cart</button>
     </div>
   </article>
 </template>
@@ -38,7 +38,7 @@ defineProps({
   justify-content: flex-start;
   border: 1px solid #e6e6e6;
   border-radius: 14px;
-  padding: 12px;
+  padding: 16px;
   background: #fff;
   box-sizing: border-box;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -81,7 +81,7 @@ defineProps({
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.8em;
+  min-height: 2em;
 }
 
 .prices {

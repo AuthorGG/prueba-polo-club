@@ -4,4 +4,9 @@ console.log("esto se ve");
 <template>
   <h1>Prueba Práctica</h1>
 </template>
-<style></style>
+<style>
+h1 {
+  margin-top: 5rem;
+  text-align: center;
+}
+</style>
