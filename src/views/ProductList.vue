@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
-import ProductCard from "./ProductCard.vue";
+import ProductCard from "../components/ProductCard.vue";
 import { useProductStore } from "../stores/products";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination } from "swiper/modules";

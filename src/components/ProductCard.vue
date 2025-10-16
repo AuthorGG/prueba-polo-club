@@ -1,15 +1,21 @@
 <script setup>
+import { useCartStore } from "../stores/cart";
+const cart = useCartStore();
 defineProps({
   product: { type: Object },
   required: true,
 });
+
+function addToCart(product) {
+  cart.addToCart(product);
+}
 </script>
 <template>
   <article class="card">
     <img :src="product.image" :alt="product.title" loading="lazy" />
     <h2 class="product-title">{{ product.title }}</h2>
     <p class="product-price">{{ product.price }}</p>
-    <button>add to cart</button>
+    <button @click="addToCart()">add to cart</button>
   </article>
 </template>
 <style>
