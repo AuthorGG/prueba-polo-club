@@ -1,15 +1,28 @@
 <script setup>
+import { computed } from "vue";
 import { useCartStore } from "../stores/cart";
+import { useWishlistStore } from "../stores/wishlist";
+
 const cart = useCartStore();
-defineProps({
+const wishlist = useWishlistStore();
+const props = defineProps({
   product: { type: Object },
   required: true,
 });
+
+const isInWishlist = computed(() => wishlist.isInWishlist(props.product.id));
 </script>
 <template>
   <article class="card">
     <div class="thumb">
       <img :src="product.image" :alt="product.title" loading="lazy" />
+      <button
+        class="wishlist-btn"
+        :class="{ active: isInWishlist }"
+        @click="wishlist.toggleWishlist(product)"
+      >
+        {{ isInWishlist ? "❤️" : "🤍" }}
+      </button>
     </div>
 
     <h2 class="title">{{ product.title }}</h2>
@@ -53,6 +66,7 @@ defineProps({
   place-items: center;
   overflow: hidden;
   margin-bottom: 0.75rem;
+  position: relative;
 }
 
 .thumb img {
@@ -107,12 +121,36 @@ defineProps({
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   transition: background 0.2s;
+  font-size: 1rem;
 }
 
 .btn:hover {
-  background: #333;
+  background: #180e0e;
 }
 
+.wishlist-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+}
+.wishlist-btn:hover {
+  transform: scale(1.2);
+  background-color: rgba(255, 0, 0, 0.527);
+  border-radius: 10px;
+}
+.wishlist-btn.active {
+  color: rgb(0, 0, 0);
+}
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
   :root {

@@ -38,12 +38,12 @@ watch(
 <style scoped>
 .searchbar {
   display: block;
-  margin: 1rem auto;
+  margin: 0.8rem auto;
   padding: 0.6rem 1rem;
   width: 100%;
   max-width: 400px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 7px;
   font-size: 1rem;
 }
 </style>

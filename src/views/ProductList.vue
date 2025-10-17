@@ -59,6 +59,7 @@ const filteredProducts = computed(() => {
 }
 
 .product-swiper {
+  padding-top: 0.8rem;
   padding-bottom: 36px;
 }
 :deep(.swiper-pagination) {
