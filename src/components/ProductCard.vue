@@ -39,12 +39,12 @@ const isInWishlist = computed(() => wishlist.isInWishlist(props.product.id));
 
 <style scoped>
 :root {
-  --card-w: 260px;
-  --card-h: 420px;
+  --card-w: 250px;
+  --card-h: 410px;
 }
 
 .card {
-  background: rgba(58, 21, 3, 0.596);
+  background: linear-gradient(135deg, #5c4433, #8c7564);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -81,8 +81,12 @@ const isInWishlist = computed(() => wishlist.isInWishlist(props.product.id));
 }
 
 .title {
+  color: #fff;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.596);
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   font-size: 1rem;
-  font-weight: 700;
   text-align: center;
   margin: 0.5rem 0;
   display: -webkit-box;
@@ -94,6 +98,9 @@ const isInWishlist = computed(() => wishlist.isInWishlist(props.product.id));
 }
 
 .prices {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #dfddd8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,11 +123,10 @@ const isInWishlist = computed(() => wishlist.isInWishlist(props.product.id));
 .btn {
   background: #111;
   color: #fff;
-  border: none;
   border-radius: 10px;
+  transition: background 0.3s;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
-  transition: background 0.2s;
   font-size: 1rem;
 }
 

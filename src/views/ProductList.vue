@@ -65,6 +65,32 @@ const filteredProducts = computed(() => {
 :deep(.swiper-pagination) {
   bottom: 0 !important;
 }
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.555);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+:deep(.swiper-button-next::after),
+:deep(.swiper-button-prev::after) {
+  transform: scale(0.7);
+  font-size: 16px !important;
+  font-weight: bold;
+  margin: 0;
+}
+
+:deep(.swiper-button-next:hover),
+:deep(.swiper-button-prev:hover) {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffb11f;
+  font-size: 16px !important;
+}
 
 .slide-center {
   display: flex;
